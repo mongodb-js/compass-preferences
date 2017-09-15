@@ -110,5 +110,10 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "ampersand-model": "^6.0.2",
+    "lodash.get": "^4.4.2",
+    "storage-mixin": "^0.8.1"
   }
 }
