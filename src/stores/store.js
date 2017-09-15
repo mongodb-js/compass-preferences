@@ -2,8 +2,6 @@ import Reflux from 'reflux';
 import StateMixin from 'reflux-state-mixin';
 import PreferencesActions from 'actions';
 
-const debug = require('debug')('mongodb-compass:stores:preferences');
-
 /**
  * Preferences store.
  */
@@ -42,23 +40,6 @@ const PreferencesStore = Reflux.createStore({
   },
 
   /**
-   * This method is called when the data service is finished connecting. You
-   * receive either an error or the connected data service object, and if the
-   * connection was successful you can now make calls to the database, e.g.
-   *
-   * dataService.command('admin', {connectionStatus: 1}, this.handleStatus.bind(this));
-   *
-   * If this plugin does not need to talk to the database, you can delete this
-   * method.
-   *
-   * @param {Object} error         the error object if connection was unsuccessful
-   * @param {Object} dataService   the dataService object if connection was successful
-   *
-   */
-  onConnected() {
-  },
-
-  /**
    * Initialize the Preferences store state. The returned object must
    * contain all keys that you might want to modify with this.setState().
    *
@@ -66,25 +47,8 @@ const PreferencesStore = Reflux.createStore({
    */
   getInitialState() {
     return {
-      status: 'enabled'
+      preferences: {}
     };
-  },
-
-  /**
-   * handlers for each action defined in ../actions/index.jsx, for example:
-   */
-  toggleStatus() {
-    this.setState({
-      status: this.state.status === 'enabled' ? 'disabled' : 'enabled'
-    });
-  },
-
-  /**
-   * log changes to the store as debug messages.
-   * @param  {Object} prevState   previous state.
-   */
-  storeDidUpdate(prevState) {
-    debug('Preferences store changed from', prevState, 'to', this.state);
   }
 });
 

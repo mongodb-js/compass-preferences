@@ -8,17 +8,8 @@ class Preferences extends Component {
   static displayName = 'PreferencesComponent';
 
   static propTypes = {
-    actions: PropTypes.object.isRequired,
-    status: PropTypes.oneOf(['enabled', 'disabled'])
+    preferences: PropTypes.object
   };
-
-  static defaultProps = {
-    status: 'enabled'
-  };
-
-  onClick = () => {
-    this.props.actions.toggleStatus();
-  }
 
   /**
    * Render Preferences component.
@@ -27,9 +18,7 @@ class Preferences extends Component {
    */
   render() {
     return (
-      <div className={classnames(styles.root)}>
-        <h2 className={classnames(styles.title)}>Preferences Plugin</h2>
-        <p>Compass Preferences Plugin</p>
+      <div className={classnames(styles.preferences)}>
       </div>
     );
   }

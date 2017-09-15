@@ -27,17 +27,6 @@ storiesOf('Preferences', module)
               </ComponentPreview>
             ),
             options: withChaptersOptions
-          },
-          {
-            title: 'Status Disabled',
-            subtitle: 'Nostrud amet minim exercitation',
-            info: 'Lorem ipsum irure ut exercitation ut dolore ut consequat in mollit aute voluptate est reprehenderit fugiat in dolor consectetur eu.',
-            sectionFn: () => (
-              <ComponentPreview dark>
-                <Preferences status="disabled" />
-              </ComponentPreview>
-            ),
-            options: withChaptersOptions
           }
         ]
       }

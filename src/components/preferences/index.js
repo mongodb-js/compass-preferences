@@ -1,4 +1,4 @@
-import Preferences from './Preferences';
+import Preferences from './preferences';
 
 export default Preferences;
 export { Preferences };
