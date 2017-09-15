@@ -5,6 +5,17 @@ import { format } from 'util';
 import { remote } from 'electron';
 
 /**
+ * The network features.
+ */
+const NETWORK_FEATURES = [
+  'enableMaps',
+  'trackErrors',
+  'enableFeedbackPanel',
+  'trackUsageStatistics',
+  'autoUpdates'
+];
+
+/**
  * Represents preferences in Compass.
  */
 const Preferences = Model.extend(storageMixin, {
@@ -249,8 +260,7 @@ const Preferences = Model.extend(storageMixin, {
    */
   isFeatureEnabled: function(feature) {
     // master network switch overwrites all network related features
-    if (['enableMaps', 'trackErrors', 'enableFeedbackPanel',
-      'trackUsageStatistics', 'autoUpdates'].indexOf(feature) !== -1) {
+    if (NETWORK_FEATURES.indexOf(feature) !== -1) {
       return this.networkTraffic && get(this, feature);
     }
     const res = get(this, feature, null);
