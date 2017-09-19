@@ -3,10 +3,10 @@ import PreferencesActions from 'actions';
 import PreferencesStore from 'stores';
 
 /**
- * A sample role for the component.
+ * The preferences role.
  */
 const ROLE = {
-  name: 'Preferences',
+  name: 'Privacy Settings',
   component: PreferencesPlugin
 };
 
@@ -15,15 +15,6 @@ const ROLE = {
  * @param {Object} appRegistry - The Hadron appRegisrty to activate this plugin with.
  **/
 function activate(appRegistry) {
-  // Register the PreferencesPlugin as a role in Compass
-  //
-  // Available roles are:
-  //   - Instance.Tab
-  //   - Database.Tab
-  //   - Collection.Tab
-  //   - CollectionHUD.Item
-  //   - Header.Item
-
   appRegistry.registerRole('Application.Preferences', ROLE);
   appRegistry.registerAction('Preferences.Actions', PreferencesActions);
   appRegistry.registerStore('Preferences.Store', PreferencesStore);
