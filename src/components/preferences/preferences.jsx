@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Item } from 'components/item';
 
-// import styles from './preferences.less';
+import styles from './preferences.less';
 
 /**
  * The title.
@@ -42,6 +42,12 @@ const USAGE = 'Allow Compass to send anonymous usage statistics.';
 const UPDATES = 'Allow Compass to periodically check for new updates.';
 
 /**
+ * The notice message.
+ */
+const NOTICE = 'With any of these options, none of your personal information or ' +
+  'stored data will be submitted.';
+
+/**
  * The preferences component.
  */
 class Preferences extends Component {
@@ -74,16 +80,16 @@ class Preferences extends Component {
    */
   render() {
     return (
-      <div className={classnames('modal-dialog')}>
-        <div className={classnames('modal-content')}>
-          <div className={classnames('modal-header')}>
-            <h4 className={classnames('modal-title')} data-test-id="modal-title">
-              {TITLE}
-            </h4>
-          </div>
-          <div className={classnames('modal-body')}>
-            <p>{DESCRIPTION}</p>
-            <ul>
+      <div className={classnames(styles.modal)}>
+        <div className={classnames(styles.preferences)}>
+          <div className={classnames(styles['preferences-content'])}>
+            <div className={classnames(styles['preferences-header'])}>
+              <h4 className={classnames(styles['preferences-header-title'])} data-test-id="modal-title">
+                {TITLE}
+              </h4>
+            </div>
+            <div className={classnames(styles['preferences-body'])}>
+              <p>{DESCRIPTION}</p>
               <Item
                 title="Enable Product Feedback Tool"
                 description={FEEDBACK}
@@ -109,12 +115,12 @@ class Preferences extends Component {
                 description={UPDATES}
                 dataTestId="auto-updates-checkbox"
                 clickHandler={this.onUpdatesClick.bind(this)} />
-            </ul>
-            <p>With any of these options, none of your personal information or stored data will be submitted.</p>
-            <p>
-              Learn more:
-              <a href="https://www.mongodb.com/legal/privacy-policy">MongoDB Privacy Policy</a>
-            </p>
+              <p>{NOTICE}</p>
+              <p>
+                Learn more:
+                <a href="https://www.mongodb.com/legal/privacy-policy">MongoDB Privacy Policy</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

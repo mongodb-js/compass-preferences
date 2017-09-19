@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import classnames from 'classnames';
+import classnames from 'classnames';
 
-// import styles from './item.less';
+import styles from './item.less';
 
 class Item extends Component {
   static displayName = 'ItemComponent';
@@ -21,7 +21,7 @@ class Item extends Component {
    */
   render() {
     return (
-      <li>
+      <div className={classnames(styles['preferences-body-item'])}>
         <label>
           <input type="checkbox" data-test-id={this.props.dataTestId} onClick={this.props.clickHandler} />
           <span>{this.props.title}</span>
@@ -29,7 +29,7 @@ class Item extends Component {
         <p>
           {this.props.description}
         </p>
-      </li>
+      </div>
     );
   }
 }
