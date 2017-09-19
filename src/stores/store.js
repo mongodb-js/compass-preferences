@@ -1,6 +1,9 @@
 import Reflux from 'reflux';
 import StateMixin from 'reflux-state-mixin';
+import get from 'lodash.get';
+import semver from 'semver';
 import PreferencesActions from 'actions';
+import { Preferences } from 'models';
 
 /**
  * Preferences store.
@@ -21,22 +24,44 @@ const PreferencesStore = Reflux.createStore({
   listenables: PreferencesActions,
 
   /**
-   * Initialize everything that is not part of the store's state.
+   * Fetch the preferences when the application is initialized.
+   *
+   * @param {String} version - The application version.
    */
-  init() {
+  onInitialized(version) {
+    this.state.preferences.fetch({
+      success: () => {
+        this.updateVersions(version);
+      }
+    });
   },
 
   /**
-   * This method is called when all plugins are activated. You can register
-   * listeners to other plugins' stores here, e.g.
+   * Updates the showFeatureTour and lastKnownVersion attributes in the
+   * preferences and saves if they changed.
    *
-   * appRegistry.getStore('OtherPlugin.Store').listen(this.otherStoreChanged.bind(this));
-   *
-   * If this plugin does not depend on other stores, you can delete the method.
-   *
-   * @param {Object} appRegistry   app registry containing all stores and components
+   * @param {String} version - The current version.
    */
-  onActivated() {
+  updateVersions(version) {
+    let save = false;
+    const oldVersion = get(this.state.preferences, 'lastKnownVersion', '0.0.0');
+    if (semver.lt(oldVersion, version)) {
+      this.state.preferences.showFeatureTour = oldVersion;
+      save = true;
+    }
+    if (semver.neq(oldVersion, version)) {
+      this.state.preferences.lastKnownVersion = version;
+      save = true;
+    }
+    if (save) {
+      this.state.preferences.save(null, {
+        success: () => {
+          this.trigger(this.state);
+        }
+      });
+    } else {
+      this.trigger(this.state);
+    }
   },
 
   /**
@@ -47,7 +72,7 @@ const PreferencesStore = Reflux.createStore({
    */
   getInitialState() {
     return {
-      preferences: {}
+      preferences: new Preferences()
     };
   }
 });

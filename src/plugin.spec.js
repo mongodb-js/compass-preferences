@@ -1,13 +1,19 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { StoreConnector } from 'hadron-react-components';
-import PreferencesPlugin from './plugin';
+import preferencesPluginInjector from 'inject-loader!./plugin';
+const PreferencesPlugin = preferencesPluginInjector({
+  'components/preferences': () => (<div />),
+  'stores': {
+    PreferencesStore: {}
+  }
+}).default;
 
 describe('Preferences [Plugin]', () => {
   let component;
 
   beforeEach((done) => {
-    component = mount(<PreferencesPlugin />);
+    component = shallow(<PreferencesPlugin />);
     done();
   });
 
