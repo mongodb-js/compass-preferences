@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Preferences from 'components/preferences';
-import styles from './preferences.less';
+// import styles from './preferences.less';
 
 describe('Preferences [Component]', () => {
   describe('#render', () => {
@@ -19,7 +19,7 @@ describe('Preferences [Component]', () => {
     });
 
     it('renders the correct root classname', () => {
-      expect(component.find(`.${styles.preferences}`)).to.be.present();
+      expect(component.find('.modal-dialog')).to.be.present();
     });
   });
 });
