@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Item } from 'components/item';
+import { shell } from 'electron';
 
 import styles from './preferences.less';
 
@@ -73,6 +74,12 @@ class Preferences extends Component {
 
   }
 
+  onPrivacyClick(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    shell.openExternal('https://www.mongodb.com/legal/privacy-policy');
+  }
+
   /**
    * Render Preferences component.
    *
@@ -118,7 +125,7 @@ class Preferences extends Component {
               <p>{NOTICE}</p>
               <p>
                 Learn more:
-                <a href="https://www.mongodb.com/legal/privacy-policy">MongoDB Privacy Policy</a>
+                <a onClick={this.onPrivacyClick.bind(this)}>MongoDB Privacy Policy</a>
               </p>
             </div>
           </div>
