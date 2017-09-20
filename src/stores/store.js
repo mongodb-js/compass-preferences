@@ -37,6 +37,71 @@ const PreferencesStore = Reflux.createStore({
   },
 
   /**
+   * Set the enable feedback panel property.
+   *
+   * @param {Boolean} enabled - If the property is enabled.
+   */
+  enableFeedbackPanel(enabled) {
+    this.state.preferences.save({ enableFeedbackPanel: enabled }, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
+   * Set the enable maps property.
+   *
+   * @param {Boolean} enabled - If the property is enabled.
+   */
+  enableMaps(enabled) {
+    this.state.preferences.save({ enableMaps: enabled }, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
+   * Set the track errors property.
+   *
+   * @param {Boolean} enabled - If the property is enabled.
+   */
+  trackErrors(enabled) {
+    this.state.preferences.save({ trackErrors: enabled }, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
+   * Set the usage statistics property.
+   *
+   * @param {Boolean} enabled - If the property is enabled.
+   */
+  trackUsageStatistics(enabled) {
+    this.state.preferences.save({ trackUsageStatistics: enabled }, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
+   * Set the auto updates property.
+   *
+   * @param {Boolean} enabled - If the property is enabled.
+   */
+  autoUpdates(enabled) {
+    this.state.preferences.save({ autoUpdates: enabled }, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
    * Updates the showFeatureTour and lastKnownVersion attributes in the
    * preferences and saves if they changed.
    *

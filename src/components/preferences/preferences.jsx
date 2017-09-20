@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Item } from 'components/item';
+import Actions from 'actions';
 import { shell } from 'electron';
 
 import styles from './preferences.less';
@@ -54,26 +55,56 @@ const NOTICE = 'With any of these options, none of your personal information or 
 class Preferences extends Component {
   static displayName = 'PreferencesComponent';
 
-  onFeedbackClick() {
-
+  /**
+   * Handle enable feedback clicking.
+   *
+   * @param {Event} evt - The event.
+   */
+  onFeedbackClick(evt) {
+    Actions.enableFeedbackPanel(evt.target.checked);
   }
 
-  onMapsClick() {
-
+  /**
+   * Handle enable maps clicking.
+   *
+   * @param {Event} evt - The event.
+   */
+  onMapsClick(evt) {
+    Actions.enableMaps(evt.target.checked);
   }
 
-  onErrorsClick() {
-
+  /**
+   * Handle track errors clicking.
+   *
+   * @param {Event} evt - The event.
+   */
+  onErrorsClick(evt) {
+    Actions.trackErrors(evt.target.checked);
   }
 
-  onUsageClick() {
-
+  /**
+   * Handle usage statistics clicking.
+   *
+   * @param {Event} evt - The event.
+   */
+  onUsageClick(evt) {
+    Actions.trackUsageStatistics(evt.target.checked);
   }
 
-  onUpdatesClick() {
-
+  /**
+   * Handle auto updates clicking.
+   *
+   * @param {Event} evt - The event.
+   */
+  onUpdatesClick(evt) {
+    Actions.autoUpdates(evt.target.checked);
   }
 
+  /**
+   * Handle clicking the privacy policy link.
+   *
+   * @param {Event} evt - The event.
+   */
   onPrivacyClick(evt) {
     evt.preventDefault();
     evt.stopPropagation();
