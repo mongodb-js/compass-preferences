@@ -46,6 +46,14 @@ describe('PreferencesStore [Store]', () => {
   });
 
   describe('#trackErrors', () => {
+    it('saves the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.trackErrors).to.equal(true);
+        done();
+      });
+      Actions.trackErrors(true);
+    });
   });
 
   describe('#trackUsageStatistics', () => {
