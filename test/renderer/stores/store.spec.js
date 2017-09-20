@@ -68,6 +68,14 @@ describe('PreferencesStore [Store]', () => {
   });
 
   describe('#autoUpdates', () => {
+    it('saves the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.autoUpdates).to.equal(true);
+        done();
+      });
+      Actions.autoUpdates(true);
+    });
   });
 
   describe('#updateVersions', () => {
