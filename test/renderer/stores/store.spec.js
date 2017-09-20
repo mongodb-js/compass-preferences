@@ -1,4 +1,5 @@
 import Store from 'stores';
+import Actions from 'actions';
 
 describe('PreferencesStore [Store]', () => {
   afterEach(() => {
@@ -20,6 +21,29 @@ describe('PreferencesStore [Store]', () => {
         Store.onInitialized('1.0.0');
       });
     });
+  });
+
+  describe('#enableFeedbackPanel', () => {
+    it('sets the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.enableFeedbackPanel).to.equal(true);
+        done();
+      });
+      Actions.enableFeedbackPanel(true);
+    });
+  });
+
+  describe('#enableMaps', () => {
+  });
+
+  describe('#trackErrors', () => {
+  });
+
+  describe('#trackUsageStatistics', () => {
+  });
+
+  describe('#autoUpdates', () => {
   });
 
   describe('#updateVersions', () => {
