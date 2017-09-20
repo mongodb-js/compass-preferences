@@ -24,7 +24,7 @@ describe('PreferencesStore [Store]', () => {
   });
 
   describe('#enableFeedbackPanel', () => {
-    it('sets the property', (done) => {
+    it('saves the property', (done) => {
       const unsubscribe = Store.listen((state) => {
         unsubscribe();
         expect(state.preferences.enableFeedbackPanel).to.equal(true);
@@ -35,6 +35,14 @@ describe('PreferencesStore [Store]', () => {
   });
 
   describe('#enableMaps', () => {
+    it('saves the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.enableMaps).to.equal(true);
+        done();
+      });
+      Actions.enableMaps(true);
+    });
   });
 
   describe('#trackErrors', () => {
