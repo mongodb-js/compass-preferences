@@ -57,6 +57,14 @@ describe('PreferencesStore [Store]', () => {
   });
 
   describe('#trackUsageStatistics', () => {
+    it('saves the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.trackUsageStatistics).to.equal(true);
+        done();
+      });
+      Actions.trackUsageStatistics(true);
+    });
   });
 
   describe('#autoUpdates', () => {
