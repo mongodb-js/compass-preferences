@@ -78,6 +78,17 @@ describe('PreferencesStore [Store]', () => {
     });
   });
 
+  describe('#featureTourShown', () => {
+    it('saves the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.showFeatureTour).to.equal(undefined);
+        done();
+      });
+      Actions.featureTourShown();
+    });
+  });
+
   describe('#updateVersions', () => {
     context('when the old app version exists', () => {
       beforeEach(() => {

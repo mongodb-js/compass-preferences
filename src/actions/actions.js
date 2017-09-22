@@ -5,7 +5,8 @@ const PreferencesActions = Reflux.createActions([
   'enableMaps',
   'trackErrors',
   'trackUsageStatistics',
-  'autoUpdates'
+  'autoUpdates',
+  'featureTourShown'
 ]);
 
 export default PreferencesActions;

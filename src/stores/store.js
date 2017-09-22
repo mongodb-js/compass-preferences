@@ -102,6 +102,18 @@ const PreferencesStore = Reflux.createStore({
   },
 
   /**
+   * Flag the feature tour as shown.
+   */
+  featureTourShown() {
+    this.state.preferences.unset('showFeatureTour');
+    this.state.preferences.save(null, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
    * Updates the showFeatureTour and lastKnownVersion attributes in the
    * preferences and saves if they changed.
    *
