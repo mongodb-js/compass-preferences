@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Item } from 'components/item';
 import Actions from 'actions';
@@ -54,6 +55,17 @@ const NOTICE = 'With any of these options, none of your personal information or 
  */
 class Preferences extends Component {
   static displayName = 'PreferencesComponent';
+
+  static propTypes = {
+    isVisible: PropTypes.bool
+  };
+
+  /**
+   * Closes the modal.
+   */
+  onCloseClick() {
+    Actions.closePreferences();
+  }
 
   /**
    * Handle enable feedback clicking.
@@ -117,8 +129,11 @@ class Preferences extends Component {
    * @returns {React.Component} The rendered component.
    */
   render() {
+    const modalClass = {};
+    modalClass[styles.modal] = true;
+    modalClass[styles['modal-is-visible']] = this.props.isVisible;
     return (
-      <div className={classnames(styles.modal)}>
+      <div className={classnames(modalClass)}>
         <div className={classnames(styles.preferences)}>
           <div className={classnames(styles['preferences-content'])}>
             <div className={classnames(styles['preferences-header'])}>
@@ -158,6 +173,15 @@ class Preferences extends Component {
                 Learn more:
                 <a onClick={this.onPrivacyClick.bind(this)}>MongoDB Privacy Policy</a>
               </p>
+            </div>
+            <div className={classnames(styles['preferences-footer'])}>
+              <button
+                type="button"
+                data-test-id="close-privacy-settings-button"
+                className={classnames(styles['preferences-footer-button'])}
+                onClick={this.onCloseClick.bind(this)}>
+                Close
+              </button>
             </div>
           </div>
         </div>

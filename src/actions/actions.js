@@ -6,7 +6,9 @@ const PreferencesActions = Reflux.createActions([
   'trackErrors',
   'trackUsageStatistics',
   'autoUpdates',
-  'featureTourShown'
+  'featureTourShown',
+  'closePreferences',
+  'openPreferences'
 ]);
 
 export default PreferencesActions;

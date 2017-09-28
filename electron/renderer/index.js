@@ -28,7 +28,7 @@ document.body.appendChild( root );
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <Component />
+      <Component isVisible />
     </AppContainer>,
     document.getElementById('root')
   );

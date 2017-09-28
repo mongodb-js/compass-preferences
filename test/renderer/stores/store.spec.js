@@ -10,6 +10,32 @@ describe('PreferencesStore [Store]', () => {
     expect(Store.state.preferences.showedNetworkOptIn).to.equal(false);
   });
 
+  describe('#closePreferences', () => {
+    beforeEach(() => {
+      Store.state.isVisible = true;
+    });
+
+    it('sets visible to false', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.isVisible).to.equal(false);
+        done();
+      });
+      Store.closePreferences();
+    });
+  });
+
+  describe('#openPreferences', () => {
+    it('sets visible to true', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.isVisible).to.equal(true);
+        done();
+      });
+      Store.openPreferences();
+    });
+  });
+
   describe('#onInitialized', () => {
     context('when the old app version does not exist', () => {
       it('sets the last known version to the current version', (done) => {

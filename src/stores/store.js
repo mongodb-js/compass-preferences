@@ -24,6 +24,20 @@ const PreferencesStore = Reflux.createStore({
   listenables: PreferencesActions,
 
   /**
+   * Close the preferences.
+   */
+  closePreferences() {
+    this.setState({ isVisible: false });
+  },
+
+  /**
+   * Open the preferences.
+   */
+  openPreferences() {
+    this.setState({ isVisible: true });
+  },
+
+  /**
    * Fetch the preferences when the application is initialized.
    *
    * @param {String} version - The application version.
@@ -149,7 +163,8 @@ const PreferencesStore = Reflux.createStore({
    */
   getInitialState() {
     return {
-      preferences: new Preferences()
+      preferences: new Preferences(),
+      isVisible: false
     };
   }
 });
