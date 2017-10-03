@@ -46,6 +46,15 @@ const PreferencesStore = Reflux.createStore({
   },
 
   /**
+   * Setup app registry listeners on activation.
+   *
+   * @param {AppRegistry} appRegistry - The app registry.
+   */
+  onActivated(appRegistry) {
+    appRegistry.on('application-initialized', this.onInitialized.bind(this));
+  },
+
+  /**
    * Fetch the preferences when the application is initialized.
    *
    * @param {String} version - The application version.
