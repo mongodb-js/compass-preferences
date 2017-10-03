@@ -2,6 +2,7 @@ import Reflux from 'reflux';
 import StateMixin from 'reflux-state-mixin';
 import get from 'lodash.get';
 import semver from 'semver';
+import ipc from 'hadron-ipc';
 import PreferencesActions from 'actions';
 import { Preferences } from 'models';
 
@@ -22,6 +23,13 @@ const PreferencesStore = Reflux.createStore({
    * listen to all actions defined in ../actions/index.jsx
    */
   listenables: PreferencesActions,
+
+  /**
+   * Listen for the ipc calls to show the modal.
+   */
+  init() {
+    ipc.on('window:show-preferences', this.openPreferences.bind(this));
+  },
 
   /**
    * Close the preferences.
