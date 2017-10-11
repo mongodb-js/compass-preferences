@@ -1,7 +1,7 @@
 {
   "name": "@mongodb-js/compass-preferences",
   "productName": "Compass Preferences plugin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Compass Preferences Plugin",
   "main": "lib/index.js",
   "scripts": {
