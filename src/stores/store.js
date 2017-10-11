@@ -12,6 +12,11 @@ import { Preferences } from 'models';
 const COMMUNITY = 'mongodb-compass-community';
 
 /**
+ * The compass product name.
+ */
+const COMPASS = 'mongodb-compass';
+
+/**
  * Preferences store.
  */
 const PreferencesStore = Reflux.createStore({
@@ -67,7 +72,7 @@ const PreferencesStore = Reflux.createStore({
    */
   onInitialized(version, name) {
     this.state.preferences.fetch({
-      success: (preferences) => {
+      success: () => {
         this.updateVersions(version, name);
       }
     });
@@ -179,8 +184,9 @@ const PreferencesStore = Reflux.createStore({
    * @param {String} version - The current version.
    * @param {String} name - The product name.
    */
-  updateVersions(version, name) {
+  updateVersions(version, name = COMPASS) {
     let save = false;
+    this.state.productName = name;
     const oldVersion = get(this.state.preferences, 'lastKnownVersion', '0.0.0');
     if (semver.lt(oldVersion, version)) {
       this.state.preferences.showFeatureTour = oldVersion;
@@ -215,7 +221,8 @@ const PreferencesStore = Reflux.createStore({
   getInitialState() {
     return {
       preferences: new Preferences(),
-      isVisible: false
+      isVisible: false,
+      productName: COMPASS
     };
   }
 });

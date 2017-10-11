@@ -28,14 +28,16 @@ document.body.appendChild( root );
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <Component isVisible />
+      <Component />
     </AppContainer>,
     document.getElementById('root')
   );
 };
 
 // Render our plugin
-render( PreferencesPlugin );
+render(PreferencesPlugin);
+
+appRegistry.getStore('Preferences.Store').openPreferences();
 
 if (module.hot) {
   /**

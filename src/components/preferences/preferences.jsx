@@ -8,6 +8,11 @@ import { shell } from 'electron';
 import styles from './preferences.less';
 
 /**
+ * The community product name.
+ */
+const COMMUNITY = 'mongodb-compass-community';
+
+/**
  * The title.
  */
 const TITLE = 'Privacy Settings';
@@ -57,7 +62,8 @@ class Preferences extends Component {
   static displayName = 'PreferencesComponent';
 
   static propTypes = {
-    isVisible: PropTypes.bool
+    isVisible: PropTypes.bool,
+    productName: PropTypes.string
   };
 
   /**
@@ -124,6 +130,49 @@ class Preferences extends Component {
   }
 
   /**
+   * Is this compass community.
+   *
+   * @returns {Boolean} If this is compass community.
+   */
+  isCommunity() {
+    return this.props.productName === COMMUNITY;
+  }
+
+  /**
+   * Render the feedback item.
+   *
+   * @returns {React.Component} The component.
+   */
+  renderFeedback() {
+    if (!this.isCommunity()) {
+      return (
+        <Item
+          title="Enable Product Feedback Tool"
+          description={FEEDBACK}
+          dataTestId="product-feedback-checkbox"
+          clickHandler={this.onFeedbackClick.bind(this)} />
+      );
+    }
+  }
+
+  /**
+   * Render the geo item.
+   *
+   * @returns {React.Component} The component.
+   */
+  renderGeo() {
+    if (!this.isCommunity()) {
+      return (
+        <Item
+          title="Enable Geographic Visualizations"
+          description={MAPS}
+          dataTestId="enable-maps-checkbox"
+          clickHandler={this.onMapsClick.bind(this)} />
+      );
+    }
+  }
+
+  /**
    * Render Preferences component.
    *
    * @returns {React.Component} The rendered component.
@@ -143,16 +192,8 @@ class Preferences extends Component {
             </div>
             <div className={classnames(styles['preferences-body'])}>
               <p>{DESCRIPTION}</p>
-              <Item
-                title="Enable Product Feedback Tool"
-                description={FEEDBACK}
-                dataTestId="product-feedback-checkbox"
-                clickHandler={this.onFeedbackClick.bind(this)} />
-              <Item
-                title="Enable Geographic Visualizations"
-                description={MAPS}
-                dataTestId="enable-maps-checkbox"
-                clickHandler={this.onMapsClick.bind(this)} />
+              {this.renderFeedback()}
+              {this.renderGeo()}
               <Item
                 title="Enable Crash Reports"
                 description={ERRORS}

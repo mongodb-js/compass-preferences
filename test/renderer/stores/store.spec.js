@@ -6,8 +6,16 @@ describe('PreferencesStore [Store]', () => {
     Store.state = Store.getInitialState();
   });
 
-  it('should default to an empty preferences object', function() {
+  it('should default to an empty preferences object', () => {
     expect(Store.state.preferences.showedNetworkOptIn).to.equal(false);
+  });
+
+  it('defaults visible to false', () => {
+    expect(Store.state.isVisible).to.equal(false);
+  });
+
+  it('defaults product name to compass', () => {
+    expect(Store.state.productName).to.equal('mongodb-compass');
   });
 
   describe('#closePreferences', () => {
