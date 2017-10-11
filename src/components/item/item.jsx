@@ -11,7 +11,8 @@ class Item extends Component {
     clickHandler: PropTypes.func.isRequired,
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    dataTestId: PropTypes.string
+    dataTestId: PropTypes.string,
+    isChecked: PropTypes.bool
   };
 
   /**
@@ -23,7 +24,11 @@ class Item extends Component {
     return (
       <div className={classnames(styles['preferences-body-item'])}>
         <label>
-          <input type="checkbox" data-test-id={this.props.dataTestId} onClick={this.props.clickHandler} />
+          <input
+            type="checkbox"
+            data-test-id={this.props.dataTestId}
+            onChange={this.props.clickHandler}
+            checked={this.props.isChecked} />
           <span>{this.props.title}</span>
         </label>
         <p>

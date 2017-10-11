@@ -63,7 +63,8 @@ class Preferences extends Component {
 
   static propTypes = {
     isVisible: PropTypes.bool,
-    productName: PropTypes.string
+    productName: PropTypes.string,
+    preferences: PropTypes.object
   };
 
   /**
@@ -150,7 +151,8 @@ class Preferences extends Component {
           title="Enable Product Feedback Tool"
           description={FEEDBACK}
           dataTestId="product-feedback-checkbox"
-          clickHandler={this.onFeedbackClick.bind(this)} />
+          clickHandler={this.onFeedbackClick.bind(this)}
+          isChecked={this.props.preferences.enableFeedbackPanel} />
       );
     }
   }
@@ -167,7 +169,8 @@ class Preferences extends Component {
           title="Enable Geographic Visualizations"
           description={MAPS}
           dataTestId="enable-maps-checkbox"
-          clickHandler={this.onMapsClick.bind(this)} />
+          clickHandler={this.onMapsClick.bind(this)}
+          isChecked={this.props.preferences.enableMaps} />
       );
     }
   }
@@ -198,17 +201,20 @@ class Preferences extends Component {
                 title="Enable Crash Reports"
                 description={ERRORS}
                 dataTestId="track-errors-checkbox"
-                clickHandler={this.onErrorsClick.bind(this)} />
+                clickHandler={this.onErrorsClick.bind(this)}
+                isChecked={this.props.preferences.trackErrors}/>
               <Item
                 title="Enable Usage Statistics"
                 description={USAGE}
                 dataTestId="usage-stats-checkbox"
-                clickHandler={this.onUsageClick.bind(this)} />
+                clickHandler={this.onUsageClick.bind(this)}
+                isChecked={this.props.preferences.trackUsageStatistics} />
               <Item
                 title="Enable Automatic Updates"
                 description={UPDATES}
                 dataTestId="auto-updates-checkbox"
-                clickHandler={this.onUpdatesClick.bind(this)} />
+                clickHandler={this.onUpdatesClick.bind(this)}
+                isChecked={this.props.preferences.autoUpdates} />
               <p>{NOTICE}</p>
               <p>
                 Learn more:
