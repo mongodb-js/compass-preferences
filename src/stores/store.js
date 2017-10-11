@@ -133,6 +133,28 @@ const PreferencesStore = Reflux.createStore({
   },
 
   /**
+   * Agree to the license terms.
+   */
+  agreeToLicense() {
+    this.state.preferences.save({ agreedToLicense: true }, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
+   * Disagree with the license terms.
+   */
+  disagreeWithLicense() {
+    this.state.preferences.save({ agreedToLicense: false }, {
+      success: () => {
+        this.trigger(this.state);
+      }
+    });
+  },
+
+  /**
    * Flag the feature tour as shown.
    */
   featureTourShown() {

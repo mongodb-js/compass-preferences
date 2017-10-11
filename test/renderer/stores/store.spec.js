@@ -71,6 +71,28 @@ describe('PreferencesStore [Store]', () => {
     });
   });
 
+  describe('#agreeToLicense', () => {
+    it('saves the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.agreedToLicense).to.equal(true);
+        done();
+      });
+      Actions.agreeToLicense();
+    });
+  });
+
+  describe('#disagreeWithLicense', () => {
+    it('saves the property', (done) => {
+      const unsubscribe = Store.listen((state) => {
+        unsubscribe();
+        expect(state.preferences.agreedToLicense).to.equal(false);
+        done();
+      });
+      Actions.disagreeWithLicense();
+    });
+  });
+
   describe('#trackErrors', () => {
     it('saves the property', (done) => {
       const unsubscribe = Store.listen((state) => {

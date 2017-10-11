@@ -66,6 +66,15 @@ const Preferences = Model.extend(storageMixin, {
       required: true,
       default: ''
     },
+    /**
+     * Whether the user agreed to community license terms.
+     * @type {Boolean}
+     */
+    agreedToLicense: {
+      type: 'boolean',
+      required: true,
+      default: false
+    },
     /** Master switch to disable all network traffic, which includes
      * - Google maps
      * - Bugsnag

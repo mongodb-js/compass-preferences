@@ -8,7 +8,9 @@ const PreferencesActions = Reflux.createActions([
   'autoUpdates',
   'featureTourShown',
   'closePreferences',
-  'openPreferences'
+  'openPreferences',
+  'agreeToLicense',
+  'disagreeWithLicense'
 ]);
 
 export default PreferencesActions;
