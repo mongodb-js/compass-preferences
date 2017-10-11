@@ -7,6 +7,11 @@ import PreferencesActions from 'actions';
 import { Preferences } from 'models';
 
 /**
+ * The community product name.
+ */
+const COMMUNITY = 'mongodb-compass-community';
+
+/**
  * Preferences store.
  */
 const PreferencesStore = Reflux.createStore({
@@ -58,11 +63,12 @@ const PreferencesStore = Reflux.createStore({
    * Fetch the preferences when the application is initialized.
    *
    * @param {String} version - The application version.
+   * @param {String} name - The application product name.
    */
-  onInitialized(version) {
+  onInitialized(version, name) {
     this.state.preferences.fetch({
-      success: () => {
-        this.updateVersions(version);
+      success: (preferences) => {
+        this.updateVersions(version, name);
       }
     });
   },
@@ -171,8 +177,9 @@ const PreferencesStore = Reflux.createStore({
    * preferences and saves if they changed.
    *
    * @param {String} version - The current version.
+   * @param {String} name - The product name.
    */
-  updateVersions(version) {
+  updateVersions(version, name) {
     let save = false;
     const oldVersion = get(this.state.preferences, 'lastKnownVersion', '0.0.0');
     if (semver.lt(oldVersion, version)) {
@@ -181,6 +188,11 @@ const PreferencesStore = Reflux.createStore({
     }
     if (semver.neq(oldVersion, version)) {
       this.state.preferences.lastKnownVersion = version;
+      save = true;
+    }
+    if (name === COMMUNITY) {
+      this.state.preferences.enableMaps = false;
+      this.state.preferences.enableFeedbackPanel = false;
       save = true;
     }
     if (save) {

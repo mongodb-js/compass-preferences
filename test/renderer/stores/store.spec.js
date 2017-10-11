@@ -144,6 +144,26 @@ describe('PreferencesStore [Store]', () => {
         Store.state.preferences.showFeatureTour = '1.0.0';
       });
 
+      context('when the product name is compass community', () => {
+        it('disables the feedback panel', (done) => {
+          const unsubscribe = Store.listen((state) => {
+            unsubscribe();
+            expect(state.preferences.enableFeedbackPanel).to.equal(false);
+            done();
+          });
+          Store.updateVersions('1.0.0', 'mongodb-compass-community');
+        });
+
+        it('disables the maps', (done) => {
+          const unsubscribe = Store.listen((state) => {
+            unsubscribe();
+            expect(state.preferences.enableMaps).to.equal(false);
+            done();
+          });
+          Store.updateVersions('1.0.0', 'mongodb-compass-community');
+        });
+      });
+
       context('when the old version is less than the new version', () => {
         it('saves the feature tour preference to the old version', (done) => {
           const unsubscribe = Store.listen((state) => {
