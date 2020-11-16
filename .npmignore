@@ -3,3 +3,6 @@
 .travis.yml
 .zuul.yml
 test/
+
+scripts/**/*
+!scripts/download-akzidenz.js
